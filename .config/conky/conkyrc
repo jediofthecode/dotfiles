@@ -1,0 +1,15 @@
+background no
+out_to_x no
+out_to_console yes
+update_interval 1
+total_run_times 0
+use_spacer none
+
+TEXT
+  ${wireless_essid wlp2s0}        \
+  ${hwmon 2 temp 1} | ${hwmon 2 temp 3}        \
+  ${battery_short} ${battery_time}        \
+  ${exec amixer get Master -M | grep -oE -m 1 "[[:digit:]]*%"}        \
+  ${exec printf "%.0f\n" $(light)}        \
+  ${time %a %b %d}    \
+  ${time %I:%M %p}   
